@@ -17,8 +17,10 @@ import android.widget.Toast;
 import com.example.advancedandroid.R;
 import com.example.advancedandroid.Sqlite.DataBaseHelper;
 import com.example.advancedandroid.Sqlite.SignupFragment;
+import com.example.advancedandroid.Sqlite.User;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements SignupFragment.onReceivedDataListener{
+
 
 
     EditText username;
@@ -92,5 +94,11 @@ public class LoginFragment extends Fragment {
     public void onDestroyView() {
         db.db.close();
         super.onDestroyView();
+    }
+
+    @Override
+    public void onReceivedData(User user) {
+        username.setText(user.getUsername());
+        password.setText(user.getPassword());
     }
 }

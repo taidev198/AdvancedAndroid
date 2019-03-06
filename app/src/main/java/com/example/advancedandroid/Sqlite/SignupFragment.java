@@ -18,6 +18,11 @@ import com.example.advancedandroid.Drawer.LoginFragment;
 import com.example.advancedandroid.R;
 
 public class SignupFragment extends Fragment {
+
+    public  interface onReceivedDataListener{
+        void onReceivedData(User user);
+    }
+    onReceivedDataListener mListener;
    FragmentManager fm;
    Button signup;
    TextView usernameSignup;
@@ -66,7 +71,9 @@ public class SignupFragment extends Fragment {
                         Toast.makeText(getContext(), "password and confirm password are not matched", Toast.LENGTH_SHORT).show();
                     else {
                         db.addRow(new User(usernameSignup.getText().toString(), passwordSignup.getText().toString(), 0));
-
+//                        LoginFragment loginFragment = new LoginFragment(fm);
+//                        fm.beginTransaction().replace(R.id.frame_layout, loginFragment).commit();
+                        mListener.onReceivedData(new User(usernameSignup.getText().toString(), passwordSignup.getText().toString(), 5));
                     }
                 }else
                 Toast.makeText(getContext(), "please typed something", Toast.LENGTH_SHORT).show();
@@ -78,6 +85,13 @@ public class SignupFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        try{
+            mListener = (onReceivedDataListener) context;
+        }catch (ClassCastException e){
+            e.printStackTrace();
+        }
+
+
 
     }
 
@@ -96,8 +110,9 @@ public class SignupFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        LoginFragment loginFragment = new LoginFragment(fm);
-        fm.beginTransaction().replace(R.id.frame_layout, loginFragment).addToBackStack(null).commit();
+
         super.onDestroy();
     }
+
+
 }

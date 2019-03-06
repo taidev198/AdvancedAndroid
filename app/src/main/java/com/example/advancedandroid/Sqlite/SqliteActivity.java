@@ -1,14 +1,8 @@
 package com.example.advancedandroid.Sqlite;
 
-import android.support.transition.FragmentTransitionSupport;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
-import android.widget.Toast;
 
 import com.example.advancedandroid.Drawer.LoginFragment;
 import com.example.advancedandroid.R;
