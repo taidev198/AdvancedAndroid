@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.advancedandroid.R;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SimpleThread extends AppCompatActivity implements Runnable{
     Button button;
@@ -15,8 +18,13 @@ public class SimpleThread extends AppCompatActivity implements Runnable{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_thread);
         button = findViewById(R.id.button);
-        Thread thread = new Thread(this);
-        thread.start();
+//        Thread thread = new Thread(this);
+//        thread.start();
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
     }
 
     @Override
