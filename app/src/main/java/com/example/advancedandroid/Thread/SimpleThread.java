@@ -13,6 +13,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SimpleThread extends AppCompatActivity implements Runnable{
     Button button;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +23,16 @@ public class SimpleThread extends AppCompatActivity implements Runnable{
 //        Thread thread = new Thread(this);
 //        thread.start();
         FirebaseApp.initializeApp(this);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+         database = FirebaseDatabase.getInstance();
+         myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
     }
+
+    public void writeUserData(int userId, String name, String email) {
+
+    }
+
 
     @Override
     public void run() {

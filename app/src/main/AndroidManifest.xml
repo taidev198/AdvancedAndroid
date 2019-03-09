@@ -14,10 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".BackgroundTask.BoundService.BoundServiceExample"></activity>
+        <activity android:name=".BackgroundTask.IntentServiceExample" />
 
-        <service android:name=".ServiceActivity" />
+        <service
+            android:name=".ServiceActivity"
+            android:exported="false" />
+        <service
+            android:name=".BackgroundTask.IntentService.RSSPullService"
+            android:exported="false"
+            tools:ignore="InnerclassSeparator" />
 
-        <activity android:name=".Thread.SimpleThread">
+        <activity android:name=".ContentProvider.ContentProviderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
